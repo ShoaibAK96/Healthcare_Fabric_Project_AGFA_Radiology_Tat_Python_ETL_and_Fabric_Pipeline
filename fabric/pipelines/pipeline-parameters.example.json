@@ -1,0 +1,7 @@
+{
+  "sourceFolder": "${ON_PREM_INCOMING_FOLDER}",
+  "sourceWildcard": "Radiology_TAT_*.xlsx",
+  "fabricIncoming": "Files/Radiology_TAT/Incoming",
+  "fabricArchive": "Files/Radiology_TAT/Archive",
+  "notebookName": "Radiology_TAT_Daily_Transformation"
+}

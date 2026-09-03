@@ -1,0 +1,17 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+logs/
+output/
+*.part
+*.xlsx
+!sample_data/*.xlsx
+.ipynb_checkpoints/
+config/config.local.yaml
+config/config.prod.yaml
+credentials/

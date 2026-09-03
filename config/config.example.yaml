@@ -1,0 +1,39 @@
+project:
+  name: radiology_tat
+  worksheet_name: Radiology_TAT
+  filename_prefix: Radiology_TAT
+
+source:
+  host_env: ORACLE_HOST
+  port_env: ORACLE_PORT
+  service_env: ORACLE_SERVICE_NAME
+  username_env: ORACLE_USERNAME
+  password_env: ORACLE_PASSWORD
+  sql_file: sql/daily_extraction.sql
+
+output:
+  directory_env: OUTPUT_DIRECTORY
+  log_directory_env: LOG_DIRECTORY
+
+validation:
+  required_columns:
+    - ACCESSION_NUMBER
+    - PATIENT_IDENTIFIER
+    - ORDER_CREATION_DATE
+    - EXAM_START_DATE
+    - EXAM_END_DATE
+    - REPORT_START_DATE
+    - REPORT_FINAL_DATE
+    - MODALITY
+    - EXAM_DESCRIPTION
+    - FACILITY
+    - DEPARTMENT
+    - PATIENT_TYPE
+    - PRIORITY_LEVEL
+    - ORDERING_SERVICE
+    - ORDERING_PROVIDER
+    - RADIOLOGIST
+    - STATUS
+    - TURNAROUND_MINUTES
+    - SOURCE_SYSTEM
+    - LOAD_REFERENCE
