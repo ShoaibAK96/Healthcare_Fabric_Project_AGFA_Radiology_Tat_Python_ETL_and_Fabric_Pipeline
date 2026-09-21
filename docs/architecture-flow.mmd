@@ -1,0 +1,37 @@
+flowchart TD
+    A["Oracle radiology source"] --> B["Scheduled daily\nPython ETL"]
+    A --> C["Scheduled addendum\nPython ETL"]
+    B --> D["Validated 20-column workbook"]
+    C --> E{"Rows returned?"}
+    E -->|Yes| F["Validated addendum workbook"]
+    E -->|No| G["NO_DATA success\nNo workbook published"]
+    D --> H["Controlled transfer area"]
+    F --> I["Separate addendum transfer"]
+    H --> J["Fabric daily pipeline"]
+    I --> K["Fabric addendum pipeline"]
+    J --> L["PySpark validation and hashing"]
+    K --> M["PySpark validation and hashing"]
+    L --> N{"Load decision"}
+    N -->|New date| O["Append Delta"]
+    N -->|Corrected date| P["Replace date"]
+    N -->|Same hash| Q["Skip duplicate"]
+    M --> R["Addendum Delta"]
+    O --> S["Audit logs and archive"]
+    P --> S
+    Q --> S
+    R --> T["Audit logs and archive"]
+    U["Manual-date backfill"] -. operator controlled .-> D
+    V["High-volume historical source"] --> W["Controlled streaming validation"]
+    W --> X["Historical staging only"]
+    X -. "Promotion locked / not executed" .-> Y["Production fact table"]
+
+    classDef source fill:#E8F1FB,stroke:#20639B,color:#12344D;
+    classDef process fill:#E9F7F2,stroke:#1B7F69,color:#123C33;
+    classDef decision fill:#FFF4D6,stroke:#B7791F,color:#5F430D;
+    classDef success fill:#DDF4E4,stroke:#2F855A,color:#174B2D;
+    classDef staging fill:#FFF0E6,stroke:#C05621,color:#6B2B0A;
+    class A,U,V source;
+    class B,C,D,F,H,I,J,K,L,M,W process;
+    class E,N decision;
+    class G,O,P,Q,R,S,T success;
+    class X,Y staging;

@@ -19,4 +19,4 @@ Archive_OnPrem_Incoming
 - “Delete files after completion” is enabled only on archive/move activities
 - An empty source is treated as a successful no-file run
 
-Recommended example timing: source ETL at 05:00 local time and Fabric ingestion at 09:00 local time. Adapt these values to the actual service-level agreement.
+Schedule source extraction and platform ingestion with a sufficient completion buffer. Adapt the cadence to the approved service-level agreement without publishing production timing details.
